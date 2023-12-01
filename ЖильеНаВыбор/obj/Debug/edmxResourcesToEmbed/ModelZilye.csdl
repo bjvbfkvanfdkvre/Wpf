@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ZilyeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Аренда">
+    <Key>
+      <PropertyRef Name="КодАренды" />
+    </Key>
+    <Property Name="КодАренды" Type="Int32" Nullable="false" />
+    <Property Name="КодПользователя" Type="Int32" Nullable="false" />
+    <Property Name="КодКвартиры" Type="Int32" Nullable="false" />
+    <Property Name="ДатаЗаезда" Type="DateTime" Precision="0" />
+    <Property Name="ДатаВыезда" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Квартиры" Relationship="Self.FK_Аренда_Квартиры" FromRole="Аренда" ToRole="Квартиры" />
+    <NavigationProperty Name="Пользователи" Relationship="Self.FK_Аренда_Пользователи" FromRole="Аренда" ToRole="Пользователи" />
+    <Property Name="Статус" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Квартиры">
+    <Key>
+      <PropertyRef Name="КодКвартиры" />
+    </Key>
+    <Property Name="КодКвартиры" Type="Int32" Nullable="false" />
+    <Property Name="Описание" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Этаж" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Цена" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Фото" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="НомерКвартиры" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Аренда" Relationship="Self.FK_Аренда_Квартиры" FromRole="Квартиры" ToRole="Аренда" />
+  </EntityType>
+  <EntityType Name="Пользователи">
+    <Key>
+      <PropertyRef Name="КодПользователя" />
+    </Key>
+    <Property Name="КодПользователя" Type="Int32" Nullable="false" />
+    <Property Name="Тип" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Логин" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Пароль" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Почта" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Телефон" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Аренда" Relationship="Self.FK_Аренда_Пользователи" FromRole="Пользователи" ToRole="Аренда" />
+  </EntityType>
+  <Association Name="FK_Аренда_Квартиры">
+    <End Role="Квартиры" Type="Self.Квартиры" Multiplicity="1" />
+    <End Role="Аренда" Type="Self.Аренда" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Квартиры">
+        <PropertyRef Name="КодКвартиры" />
+      </Principal>
+      <Dependent Role="Аренда">
+        <PropertyRef Name="КодКвартиры" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Аренда_Пользователи">
+    <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="1" />
+    <End Role="Аренда" Type="Self.Аренда" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Пользователи">
+        <PropertyRef Name="КодПользователя" />
+      </Principal>
+      <Dependent Role="Аренда">
+        <PropertyRef Name="КодПользователя" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ZilyeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Аренда" EntityType="Self.Аренда" />
+    <EntitySet Name="Квартиры" EntityType="Self.Квартиры" />
+    <EntitySet Name="Пользователи" EntityType="Self.Пользователи" />
+    <AssociationSet Name="FK_Аренда_Квартиры" Association="Self.FK_Аренда_Квартиры">
+      <End Role="Квартиры" EntitySet="Квартиры" />
+      <End Role="Аренда" EntitySet="Аренда" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Аренда_Пользователи" Association="Self.FK_Аренда_Пользователи">
+      <End Role="Пользователи" EntitySet="Пользователи" />
+      <End Role="Аренда" EntitySet="Аренда" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

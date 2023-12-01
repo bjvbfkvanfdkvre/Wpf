@@ -1,0 +1,55 @@
+﻿<Window x:Class="ЖильеНаВыбор.WindowUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ЖильеНаВыбор"
+        mc:Ignorable="d"
+        Title="WindowUser" Height="450" Width="800">
+    <Border CornerRadius="20">
+        <Grid ScrollViewer.CanContentScroll="True"
+      ScrollViewer.VerticalScrollBarVisibility="Visible"
+      Background="AliceBlue">
+        <!--<Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+
+
+        </Grid.RowDefinitions>-->
+
+
+        <ListView HorizontalAlignment="Center" Height="800"
+              ScrollViewer.CanContentScroll="True"
+              VerticalAlignment="Top" Width="800" Name="RoomsListView" >
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" MaxWidth="800"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="20" Width="350" ScrollViewer.CanContentScroll="True"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Image Source="Pictures/лого.png" Grid.Row="0"/>
+
+
+                        <TextBlock 
+                               Grid.Row="1" Text="{Binding Описание}"/>
+                        <TextBlock Grid.Row="2" Text="{Binding Цена}"/>
+                        
+                        <TextBlock Grid.Row="3" Text="{Binding Адрес}"/>
+                        
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!--<Button Width="150"  Height="30" Foreground="White" Content="Выход" x:Name="BtnWatch" Click="BtnExit_Click" Background="#FF38CA34" Margin="-580,143,0,0" Grid.Row="2"/>-->
+    </Grid>
+    </Border>
+</Window>

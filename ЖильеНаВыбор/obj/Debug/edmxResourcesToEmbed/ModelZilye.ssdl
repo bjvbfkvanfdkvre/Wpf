@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище ZilyeModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Аренда">
+    <Key>
+      <PropertyRef Name="КодАренды" />
+    </Key>
+    <Property Name="КодАренды" Type="int" Nullable="false" />
+    <Property Name="КодПользователя" Type="int" Nullable="false" />
+    <Property Name="КодКвартиры" Type="int" Nullable="false" />
+    <Property Name="ДатаЗаезда" Type="date" />
+    <Property Name="ДатаВыезда" Type="date" />
+    <Property Name="Статус" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Квартиры">
+    <Key>
+      <PropertyRef Name="КодКвартиры" />
+    </Key>
+    <Property Name="КодКвартиры" Type="int" Nullable="false" />
+    <Property Name="Описание" Type="varchar" MaxLength="300" />
+    <Property Name="Этаж" Type="varchar" MaxLength="50" />
+    <Property Name="Адрес" Type="varchar" MaxLength="50" />
+    <Property Name="Цена" Type="money" />
+    <Property Name="Фото" Type="image" />
+    <Property Name="НомерКвартиры" Type="varchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="Пользователи">
+    <Key>
+      <PropertyRef Name="КодПользователя" />
+    </Key>
+    <Property Name="КодПользователя" Type="int" Nullable="false" />
+    <Property Name="Тип" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Логин" Type="varchar" MaxLength="50" />
+    <Property Name="Пароль" Type="varchar" MaxLength="50" />
+    <Property Name="Почта" Type="varchar" MaxLength="50" />
+    <Property Name="Телефон" Type="varchar" MaxLength="50" />
+    <Property Name="Фамилия" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Имя" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Отчество" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Аренда_Квартиры">
+    <End Role="Квартиры" Type="Self.Квартиры" Multiplicity="1" />
+    <End Role="Аренда" Type="Self.Аренда" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Квартиры">
+        <PropertyRef Name="КодКвартиры" />
+      </Principal>
+      <Dependent Role="Аренда">
+        <PropertyRef Name="КодКвартиры" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Аренда_Пользователи">
+    <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="1" />
+    <End Role="Аренда" Type="Self.Аренда" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Пользователи">
+        <PropertyRef Name="КодПользователя" />
+      </Principal>
+      <Dependent Role="Аренда">
+        <PropertyRef Name="КодПользователя" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище ZilyeModelContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Аренда" EntityType="Self.Аренда" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Квартиры" EntityType="Self.Квартиры" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Пользователи" EntityType="Self.Пользователи" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Аренда_Квартиры" Association="Self.FK_Аренда_Квартиры">
+      <End Role="Квартиры" EntitySet="Квартиры" />
+      <End Role="Аренда" EntitySet="Аренда" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Аренда_Пользователи" Association="Self.FK_Аренда_Пользователи">
+      <End Role="Пользователи" EntitySet="Пользователи" />
+      <End Role="Аренда" EntitySet="Аренда" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

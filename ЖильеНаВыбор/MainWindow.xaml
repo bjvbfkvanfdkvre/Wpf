@@ -1,0 +1,39 @@
+﻿<Window x:Class="ЖильеНаВыбор.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ЖильеНаВыбор"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel Background="AliceBlue">
+        <TextBlock
+Text="ЖильеНаВыбор" Margin="0,39,0,0" Height="37" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" FontFamily="Segoe UI Variable Small Semibold" />
+        <Grid x:Name="grid1" Height="183" Margin="192,85,192,250">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" FontSize="20" HorizontalAlignment="Center" FontFamily="Segoe UI Variable Display Semibold"><Run Text="Авторизация"/></TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="1" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" 
+       FontFamily="Segoe UI Variable Display Semibold" ><Run Text="Логин"/></TextBlock>
+            <TextBox Grid.Column="0" Grid.Row="1" x:Name="tbxLogin_" Width="220" Height="30" VerticalContentAlignment="Center"/>
+            <TextBlock Grid.Column="0" Grid.Row="2" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" 
+       FontFamily="Segoe UI Variable Display Semibold"><Run Text="Пароль"/></TextBlock>
+            <PasswordBox Grid.Column="0" Grid.Row="2" x:Name="tbxPassword_" Width="220" Height="30" VerticalContentAlignment="Center"/>
+            <Button Grid.Column="0" Grid.Row="3" Width="150" Content="OK" Height="30" x:Name="BtnOK" Click="BtnOK_Click" Margin="133,5,133,1" Background="#FF8639FF" Foreground="White"/>
+            <Image Source="Pictures/лого.png" Margin="-23,-74,-23,42"/>
+        </Grid>
+        <Button Width="150" Margin="0,-429,-160,0" Height="30" Foreground="White" x:Name= "BtnRegistrate" Content="Зарегистрироваться" Click="BtnRegistrate_Click" Background="#FF38CA34"/>
+        <Button Width="150"  Height="30" Foreground="White" Content="Просмотр квартир" x:Name="BtnWatch" Click="BtnWatch_Click" Background="#FF38CA34" Margin="-160,-429,0,0"/>
+
+
+    </StackPanel>
+</Window>

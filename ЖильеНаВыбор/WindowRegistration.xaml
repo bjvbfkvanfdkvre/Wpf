@@ -1,0 +1,48 @@
+﻿<Window x:Class="ЖильеНаВыбор.WindowRegistration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ЖильеНаВыбор"
+        mc:Ignorable="d"
+        Title="WindowRegistration" Height="450" Width="800">
+    <StackPanel Background="AliceBlue">
+        <Grid Background="White" Height="319" Width="476" HorizontalAlignment="Center" Margin="0,44,0,53" >
+            <Grid.RowDefinitions>
+
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+
+
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Left" Height="16" Margin="10,10,0,0" TextWrapping="Wrap" Text="Логин" VerticalAlignment="Top" Width="108"/>
+            <TextBlock HorizontalAlignment="Left" Height="16" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Пароль" VerticalAlignment="Top" Width="108"/>
+            <TextBlock HorizontalAlignment="Left" Height="16" Margin="10,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Фамилия" VerticalAlignment="Top" Width="108"/>
+            <TextBlock HorizontalAlignment="Left" Height="16" Margin="10,10,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Имя" VerticalAlignment="Top" Width="108"/>
+            <TextBlock HorizontalAlignment="Left" Height="16" Margin="10,10,0,0" Grid.Row="4" TextWrapping="Wrap" Text="Отчество" VerticalAlignment="Top" Width="108"/>
+
+            <TextBlock HorizontalAlignment="Left" Height="16" Margin="10,10,0,0" Grid.Row="5" TextWrapping="Wrap" Text="Телефон" VerticalAlignment="Top" Width="108"/>
+            <TextBlock HorizontalAlignment="Left" Height="16" Margin="10,10,0,0" Grid.Row="6" TextWrapping="Wrap" Text="Элетронная почта" VerticalAlignment="Top" Width="108"/>
+
+            <TextBox Name="tbLogin"  Margin="0,6,0,0" Grid.Column="1" Grid.Row="0" />
+            <PasswordBox Name="tbPassword" Margin="0,6,0,0" Grid.Column="1"  Grid.Row="1" />
+            <TextBox Name="tbSurname" Margin="0,6,0,0" Grid.Column="1" Grid.Row="2" />
+            <TextBox Name="tbName" Margin="0,6,0,0" Grid.Column="1" Grid.Row="3" />
+            <TextBox Name="tbSecondName" Margin="0,6,0,0" Grid.Column="1" Grid.Row="4"/>
+            <TextBox Name="tbNumber" Margin="0,6,0,0" Grid.Column="1" Grid.Row="5"/>
+            <TextBox Name="tbMail" Margin="0,6,0,0" Grid.Column="1" Grid.Row="6"/>
+        </Grid>
+        <Button Width="150"  Height="30" Foreground="White" x:Name="BtnRegistrate" Content="Зарегистрироваться" Click="BtnRegistrate_Click" Background="#FF38CA34" Margin="0,-35,-175,0"/>
+        <Button Width="150"  Height="30" Foreground="White" x:Name="BtnBack" Content="Назад" Click="BtnBack_Click" Background="#FF7C9C7B" Margin="-175,-35,0,0"/>
+    </StackPanel>
+</Window>

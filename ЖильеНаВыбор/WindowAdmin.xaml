@@ -1,0 +1,100 @@
+﻿<Window x:Class="ЖильеНаВыбор.WindowAdmin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ЖильеНаВыбор"
+        xmlns:command="clr-namespace:ЖильеНаВыбор.Commands"
+        mc:Ignorable="d"
+        Loaded="Page_Loaded"
+        Title="WindowAdmin" Height="450" Width="800">
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static command:DataCommands.Undo}"
+                Executed="UndoCommandBinding_Executed"
+                CanExecute="UndoCommandBinding_CanExecuted"/>
+
+        <CommandBinding Command="{x:Static command:DataCommands.Edit}"
+                Executed="EditCommandBinding_Executed"
+                CanExecute="EditCommandBinding_CanExecuted"/>
+        <CommandBinding Command="{x:Static command:DataCommands.Delete}"
+                Executed="DeleteCommandBinding_Executed"
+                CanExecute="DeleteCommandBinding_CanExecuted"/>
+        <CommandBinding Command="{x:Static command:DataCommands.New}"
+                Executed="NewCommandBinding_Executed"
+                CanExecute="NewCommandBinding_CanExecuted"/>
+       
+        <CommandBinding Command="{x:Static command:DataCommands.Save}"
+                Executed="SaveCommandBinding_Executed"
+                CanExecute="SaveCommandBinding_CanExecuted"/>
+        <CommandBinding Command="{x:Static command:DataCommands.Refresh}"
+        Executed="RefreshCommandBinding_Executed"
+        CanExecute="RefreshCommandBinding_CanExecuted"/>
+        
+    </Window.CommandBindings>
+    <StackPanel Background="AliceBlue">
+        
+        <Menu>
+            <MenuItem Header="Действие" BorderThickness="3">
+                <MenuItem Header="Отменить" Command="{x:Static command:DataCommands.Undo}"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Создать" Command="{x:Static command:DataCommands.New}"></MenuItem>
+                <MenuItem Header="Редактировать" Command="{x:Static command:DataCommands.Edit}"></MenuItem>
+                <MenuItem Header="Сохранить" Command="{x:Static command:DataCommands.Save}"></MenuItem>
+               
+                <MenuItem Header="Обновить" Command="{x:Static command:DataCommands.Refresh}"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Удалить" Command="{x:Static command:DataCommands.Delete}"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Button x:Name="KvartiraButton"
+                Click="KvartiraButton_Click"
+                Height="25" >Квартиры</Button>
+        <Button x:Name="ArendaButton"
+        Click="ArendaButton_Click"
+        Height="25">Аренда</Button>
+        <DataGrid Name="DataGridKvartira"
+           ItemsSource="{Binding}"
+           AutoGenerateColumns="False"
+           HorizontalAlignment="Left"
+           MaxWidth="1000" MaxHeight="295"
+           RowBackground="BlanchedAlmond"
+           AlternatingRowBackground="Azure"
+           BorderBrush="Gray"
+           BorderThickness="3"
+           RowHeight="25"
+           Cursor="Hand"
+           CanUserAddRows="False"
+           CanUserDeleteRows="False" Width="757">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Код квартиры" Binding="{Binding КодКвартиры,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Описание" Binding="{Binding Описание,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Этаж" Binding="{Binding Этаж,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Адрес" Binding="{Binding Адрес,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Цена за месяц" Binding="{Binding Цена,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Номер квартиры" Binding="{Binding НомерКвартиры,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Name="DataGridArenda"
+   ItemsSource="{Binding}"
+   AutoGenerateColumns="False"
+   HorizontalAlignment="Left"
+   MaxWidth="1000" MaxHeight="295"
+   RowBackground="BlanchedAlmond"
+   AlternatingRowBackground="Azure"
+   BorderBrush="Gray"
+   BorderThickness="3"
+   RowHeight="25"
+   Cursor="Hand"
+   CanUserAddRows="False"
+   CanUserDeleteRows="False" Width="757"
+                  Visibility="Hidden">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер аренды" Binding="{Binding КодАренды,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Дата заезда" Binding="{Binding ДатаЗаезда,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Дата выезда" Binding="{Binding ДатаВыезда,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Статус,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+    </StackPanel>
+</Window>
